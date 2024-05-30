@@ -21,6 +21,7 @@ public class UserInterface {
             System.out.println("Learn German");
             System.out.println("How many words do you want to learn?");
             String input = scanner.nextLine();
+            input = input.trim();
             int number = 0;
             //getting a valid integer input
             try {
@@ -49,6 +50,7 @@ public class UserInterface {
 
             } else if (number > 0 && number > list.size()) {
                 List<Dictionary> copiedList = this.germanToEnglish.getCopiesList(number);
+                System.out.println("The App does not contain that much of words!, below are the words in the list.");
                 for (int i = 0; i < copiedList.size(); i++) {
                     System.out.println("German word: " + list.get(i).getGermanword());
                     String enter = scanner.nextLine();
