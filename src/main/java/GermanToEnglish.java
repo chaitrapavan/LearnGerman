@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 import java.util.List;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
 
 public class GermanToEnglish {
 
@@ -51,17 +55,14 @@ public class GermanToEnglish {
                 this.translatedList.remove(size);
             }
 
-        }
-        else if (input > this.translatedList.size()) {
+        } else if (input > this.translatedList.size()) {
             newList = this.translatedList;
-
         }
-
         return newList;
 
     }
 
-    public List<Dictionary> getCopiesList(int input) {
+    public List<Dictionary> getCopiedList(int input) {
         List<Dictionary> newList = new ArrayList<>();
         if (input > this.translatedList.size()) {
             newList = this.translatedList;

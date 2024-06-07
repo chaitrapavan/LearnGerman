@@ -10,36 +10,3 @@ Er ist gestern gekommen.
 wollen
 want
 Sie wollen hier zub leiben.
-arbeiten
-work
-Sie arbeitet in eine Firma.
-sehen
-see
-Die Touristen sehen den Sonnenuntergang.
-gehen
-go
-Wir gehen ins Kino.
-haben
-have
-Ihr habt so viel Geld.
-machen
-make
-Sie macht Orangansaft.
-werden
-become
-Sie kann eine Arzt werden.
-sprechen
-speak
-ich spreche mit dir.
-trinken
-drink
-Er trinkt Alkohol.
-essen
-eat
-Sie isst kein Fleisch.
-putzen
-clean
-wir putzen unsere Wohnung.
-spielen
-play
-Ich spiele mit meine Tochter.
