@@ -13,24 +13,45 @@ public class UserInterface {
     private GermanToEnglish germanToEnglish;
     private Scanner scanner;
     private ArrayList<String> readFromStoredfile;
+    private ArrayList<String> readLearnedList;
 
     public UserInterface(GermanToEnglish germanToEnglish, Scanner scanner) {
         this.germanToEnglish = germanToEnglish;
         this.scanner = scanner;
         this.readFromStoredfile = new ArrayList<>();
+        this.readLearnedList = new ArrayList<>();
     }
 
-    public void start() {
+    public void start(String name) {
         this.germanToEnglish.germanWords();
 
         while (true) {
             System.out.println("Learn German");
-            System.out.println("How many words do you want to learn?");
+            System.out.println("How many words do you want to learn " + name + "?" + " Type end if you want to end");
             String input = scanner.nextLine();
+
             input = input.trim();
             int number = 0;
             //getting a valid integer input
             try {
+                if (input.equals("end")) {
+                    try ( Scanner scanner = new Scanner(Paths.get("learnedWords.txt"))) {
+//                        this.readFromStoredfile.clear();
+                        while (scanner.hasNextLine()) {
+                            String storedWord = scanner.nextLine();
+                            this.readLearnedList.add(storedWord);
+                        }
+                        if (this.readLearnedList.isEmpty()) {
+                            System.out.println("You have not learned any words");
+                        } else {
+                            System.out.println("Learned words are: " + this.readLearnedList);
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
                 number = Integer.parseInt(input);
             } catch (NumberFormatException e) {
                 System.out.println("Please give a valid number");
@@ -73,6 +94,7 @@ public class UserInterface {
                             }
                         } else {
                             System.out.println("You have learned this word: " + list.get(i).getGermanword());
+                            
                         }
                     }
                 }
