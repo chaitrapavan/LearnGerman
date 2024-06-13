@@ -10,3 +10,15 @@ Er ist gestern gekommen.
 wollen
 want
 Sie wollen hier zu bleiben.
+arbeiten
+work
+Sie arbeitet in eine Firma.
+sehen
+see
+Die Touristen sehen den Sonnenuntergang.
+gehen
+go
+Wir gehen ins Kino.
+haben
+have
+Ihr habt so viel Geld.

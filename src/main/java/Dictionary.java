@@ -10,19 +10,16 @@ public class Dictionary {
         this.translatedWord = translatedWord;
         this.example = example;
     }
-    public String getGermanword(){
+
+    public String getGermanword() {
         return this.germanWord;
     }
-    public String gettranslatedWord(){
+
+    public String gettranslatedWord() {
         return this.translatedWord;
     }
-    public String getExample(){
+
+    public String getExample() {
         return this.example;
     }
-    @Override
-   public String toString(){
-       return this.germanWord + " " + this.translatedWord + " " + this.example;
-   }
-    
-    
 }

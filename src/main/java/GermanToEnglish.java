@@ -15,9 +15,10 @@ public class GermanToEnglish {
 
     public GermanToEnglish() {
         this.translatedList = new ArrayList<>();
-    }
-//reading germanWords.txt file, adding lines to a ArrayList and returning it.
 
+    }
+
+//reading germanWords.txt file, adding lines to a ArrayList and returning it.
     public ArrayList<Dictionary> readFile() {
         ArrayList<Dictionary> list = new ArrayList<>();
         try ( Scanner scanner = new Scanner(Paths.get("germanwords.txt"))) {
@@ -43,10 +44,22 @@ public class GermanToEnglish {
 
     //getting newList on the basis of user input and excluding newLists's elements from main list
     public List<Dictionary> getNewList(int input) {
+        System.out.println("input is: " + input);
         List<Dictionary> newList = new ArrayList<>();
         Random r = new Random();
+        try ( Scanner scanner = new Scanner(Paths.get("learnedWords.txt"))) {
+            while (scanner.hasNextLine()) {
+                String storedWord = scanner.nextLine();
+                for (int i = 0; i < this.translatedList.size(); i++) {
+                    if (this.translatedList.get(i).getGermanword().equals(storedWord)) {
+                        this.translatedList.remove(i);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         int size = this.translatedList.size();
-
         if (!this.translatedList.isEmpty() && input <= this.translatedList.size()) {
             for (int i = 0; i < input; i++) {
                 int selection = r.nextInt(size);
@@ -59,7 +72,6 @@ public class GermanToEnglish {
             newList = this.translatedList;
         }
         return newList;
-
     }
 
     public List<Dictionary> getCopiedList(int input) {
