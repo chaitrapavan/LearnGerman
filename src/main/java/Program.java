@@ -7,6 +7,6 @@ public class Program {
         GermanToEnglish translation = new GermanToEnglish();
         Scanner scanner = new Scanner(System.in);
         UserInterface ui = new UserInterface(translation, scanner);
-        ui.start("John");
+        ui.start();
     }
 }

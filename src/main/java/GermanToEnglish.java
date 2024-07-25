@@ -17,7 +17,6 @@ public class GermanToEnglish {
         this.translatedList = new ArrayList<>();
 
     }
-
 //reading germanWords.txt file, adding lines to a ArrayList and returning it.
     public ArrayList<Dictionary> readFile() {
         ArrayList<Dictionary> list = new ArrayList<>();
@@ -44,7 +43,6 @@ public class GermanToEnglish {
 
     //getting newList on the basis of user input and excluding newLists's elements from main list
     public List<Dictionary> getNewList(int input) {
-        System.out.println("input is: " + input);
         List<Dictionary> newList = new ArrayList<>();
         Random r = new Random();
         try ( Scanner scanner = new Scanner(Paths.get("learnedWords.txt"))) {

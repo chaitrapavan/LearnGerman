@@ -1,10 +1,8 @@
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Paths;
 
 public class UserInterface {
@@ -41,13 +39,13 @@ public class UserInterface {
     }
 
     //method to allow user to give inputs
-    public void start(String name) {
+    public void start() {
         this.germanToEnglish.germanWords();
 
         while (true) {
             if (flag == false) {
                 System.out.println("Learn German");
-                System.out.println("How many words do you want to learn " + name + "?" + " Type end if you want to end");
+                System.out.println("How many words do you want to learn Type end if you want to end");
                 String input = scanner.nextLine();
                 input = input.trim();
                 if (input.equals("")) {
