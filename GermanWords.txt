@@ -1,0 +1,40 @@
+geben
+give
+Ich gebe einen Ball.
+gebe
+benutzen
+use
+Die Person benutzt einen Computer.
+benutzt
+kommen
+come
+Er ist gestern gekommen.
+gekommen
+wollen
+want
+Sie wollen hier zu bleiben.
+wollen
+arbeiten
+work
+Sie arbeitet in eine Firma.
+arbeitet
+sehen
+see
+Die Touristen sehen den Sonnenuntergang.
+sehen
+gehen
+go
+Wir gehen ins Kino.
+gehen
+haben
+have
+Ihr habt so viel Geld.
+habt
+machen
+make
+Sie macht Orangansaft.
+macht
+werden
+become
+Sie kann eine Arztin werden.
+werden
