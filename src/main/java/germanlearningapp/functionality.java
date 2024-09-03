@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.File;
+
 public class functionality {
 
     private ArrayList<GermanLanguage> list;
@@ -63,10 +64,10 @@ public class functionality {
     }
 
     public ArrayList<GermanLanguage> wholeList(int input, File file) {
-        ArrayList<GermanLanguage> copiedList = new ArrayList<>();
+        ArrayList<GermanLanguage> copyList = new ArrayList<>();
         if (input > this.list.size()) {
-            copiedList = this.list;
+            copyList = this.list;
         }
-        return copiedList;
+        return copyList;
     }
 }

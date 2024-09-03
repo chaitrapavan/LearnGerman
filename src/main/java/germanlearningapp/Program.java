@@ -15,10 +15,9 @@ public class Program {
         functionality func = new functionality();
         Scanner scanner = new Scanner(System.in);
         UserInterface ui = new UserInterface(func, scanner);
-
+  
         System.out.println("German learning app");
-        System.out.println("If you dont have an account, please create an account first");
-        ui.auth();
-//        ui.start();
+        System.out.println("If you have not registered yet, Please register yourself!");
+        ui.authentication();
     }
 }
