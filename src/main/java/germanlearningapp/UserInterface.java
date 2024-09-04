@@ -44,13 +44,21 @@ public class UserInterface {
                     String statement = registerUser(username, password);
                     System.out.println(statement);
                 } else if (input.equals("2")) {
+                    createHashMap();
+                    String password = "";
                     System.out.print("Enter your username:");
                     String username = scanner.nextLine();
                     username = username.toLowerCase().trim();
-
-                    String statement = loginUser(username);
+                    if (this.users.containsKey(username)) {
+                        System.out.print("Enter your password:");
+                        password = scanner.nextLine();
+                        password = password.toLowerCase().trim();
+                    } else {
+                        System.out.println("Username does not exists. Please register yourself!");
+                        this.authentication();
+                    }
+                    String statement = loginUser(username, password);
                     System.out.println(statement);
-                    loginUser(username);
                 } else if (input.equals("3")) {
                     break;
                 }
@@ -78,29 +86,20 @@ public class UserInterface {
         }
     }
 
-    public String loginUser(String uname) {
-        createHashMap();
-        if (this.users.containsKey(uname)) {
-            System.out.print("Enter your password:");
-            String password = scanner.nextLine();
-            password = password.toLowerCase().trim();
-            if (users.get(uname).equals(password)) {
-                System.out.println("Login successful");
-                File file = new File("/home/chaitra/NetBeansProjects/GermanLearningApp/words.txt" + uname);
-                if (!file.exists()) {
-                    try {
-                        file.createNewFile();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+    public String loginUser(String uname, String pword) {
+        if (users.get(uname).equals(pword)) {
+            File file = new File("/home/chaitra/NetBeansProjects/GermanLearningApp/words.txt" + uname);
+            if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                start(uname, file);
-            } else {
-                return "Invalid username or password!";
             }
-            return "login successful!";
+            start(uname, file);
+            return "Thank you!";
         } else {
-            return "Username does not exist! Please register yourself!";
+            return "Invalid username or password!";
         }
     }
 
