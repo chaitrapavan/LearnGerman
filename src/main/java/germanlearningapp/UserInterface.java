@@ -35,9 +35,22 @@ public class UserInterface {
                 System.out.println("3 - Quit");
                 String input = scanner.nextLine();
                 if (input.equals("1")) {
-                    registerUser();
+                    System.out.print("Enter your username:");
+                    String username = scanner.nextLine();
+                    username = username.toLowerCase().trim();
+                    System.out.print("Enter your password:");
+                    String password = scanner.nextLine();
+                    password = password.toLowerCase().trim();
+                    String statement = registerUser(username, password);
+                    System.out.println(statement);
                 } else if (input.equals("2")) {
-                    loginUser();
+                    System.out.print("Enter your username:");
+                    String username = scanner.nextLine();
+                    username = username.toLowerCase().trim();
+
+                    String statement = loginUser(username);
+                    System.out.println(statement);
+                    loginUser(username);
                 } else if (input.equals("3")) {
                     break;
                 }
@@ -47,42 +60,33 @@ public class UserInterface {
         }
     }
 
-    public void registerUser() {
-        System.out.print("Enter your username:");
-        String username = scanner.nextLine();
-        username = username.toLowerCase().trim();
+    public String registerUser(String uname, String pword) {
         createHashMap();
-        if (users.containsKey(username)) {
-            System.out.println("Username already exists!");
+        if (users.containsKey(uname)) {
+            return "Username already exists!";
         } else {
-            System.out.print("Enter your password:");
-            String password = scanner.nextLine();
-            password = password.toLowerCase().trim();
             try ( BufferedWriter writer = new BufferedWriter(new FileWriter("UserDetails.txt", true))) {
-                writer.append(username);
+                writer.append(uname);
                 writer.append(":");
-                writer.append(password);
+                writer.append(pword);
                 writer.newLine();
                 writer.close();
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
-            System.out.println("Registration successful.");
+            return "Registration successful.";
         }
     }
 
-    public void loginUser() {
+    public String loginUser(String uname) {
         createHashMap();
-        System.out.print("Enter your Username:");
-        String username = scanner.nextLine();
-        username = username.toLowerCase().trim();
-        if (this.users.containsKey(username)) {
+        if (this.users.containsKey(uname)) {
             System.out.print("Enter your password:");
             String password = scanner.nextLine();
             password = password.toLowerCase().trim();
-            if (users.get(username).equals(password)) {
+            if (users.get(uname).equals(password)) {
                 System.out.println("Login successful");
-                File file = new File("/home/chaitra/NetBeansProjects/GermanLearningApp/words.txt" + username);
+                File file = new File("/home/chaitra/NetBeansProjects/GermanLearningApp/words.txt" + uname);
                 if (!file.exists()) {
                     try {
                         file.createNewFile();
@@ -90,13 +94,13 @@ public class UserInterface {
                         e.printStackTrace();
                     }
                 }
-                start(username, file);
+                start(uname, file);
             } else {
-                System.out.println("Invalid username or password!");
+                return "Invalid username or password!";
             }
+            return "login successful!";
         } else {
-            System.out.println("Username does not exist! Please register yourself!");
-            authentication();
+            return "Username does not exist! Please register yourself!";
         }
     }
 
