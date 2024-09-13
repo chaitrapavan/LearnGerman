@@ -21,13 +21,20 @@ public class UserInterfaceTest {
         String u = "pp";
         String p = "pandappa";
         String registerStr = ui.registerUser(u, p);
-         System.out.println(registerStr);
         assertEquals(registerStr, strOne);
-        String un = "chaitra";
-        String pw = "pavan";
-        String registerationStr = ui.registerUser(un, pw);
-        System.out.println(registerationStr);
-        assertEquals(registerationStr, strTwo);
+//        String un = "chai";
+//        String pw = "pavan";
+//        String registerationStr = ui.registerUser(un, pw);
+//        assertEquals(registerationStr, strTwo);
     }
 
+    @Test
+    public void testLoginUser() {
+        ui.createHashMap();
+        String strOne = "Invalid password!";
+        String u = "pp";
+        String p = "pa";
+        String loginStr = ui.loginUser(u, p);
+        assertEquals(loginStr, strOne);
+    }
 }

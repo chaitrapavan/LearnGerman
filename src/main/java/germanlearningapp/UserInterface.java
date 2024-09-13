@@ -68,6 +68,7 @@ public class UserInterface {
         }
     }
 
+    //user registration with username, password
     public String registerUser(String uname, String pword) {
         createHashMap();
         if (users.containsKey(uname)) {
@@ -86,6 +87,7 @@ public class UserInterface {
         }
     }
 
+    //user login with username and password
     public String loginUser(String uname, String pword) {
         if (users.get(uname).equals(pword)) {
             File file = new File("/home/chaitra/NetBeansProjects/GermanLearningApp/words.txt" + uname);
@@ -99,10 +101,11 @@ public class UserInterface {
             start(uname, file);
             return "Thank you!";
         } else {
-            return "Invalid username or password!";
+            return "Invalid password!";
         }
     }
 
+    //reading the file "UserDetails.txt" and putting the key value pairs in users hashmap
     public void createHashMap() {
         try ( Scanner scanner = new Scanner(Paths.get("UserDetails.txt"))) {
             while (scanner.hasNextLine()) {
@@ -117,6 +120,7 @@ public class UserInterface {
         }
     }
 
+    //a method to give excercise to user
     public void doExcercise(ArrayList<GermanLanguage> Alist) {
         System.out.println("Now its Excercise time!");
         System.out.println("");
@@ -139,6 +143,7 @@ public class UserInterface {
         }
     }
 
+    //ending the program if users enters "end"
     public void endProgram(File file) {
         try ( Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
@@ -253,7 +258,7 @@ public class UserInterface {
                     System.out.println("Thank you!!");
                     if (learnedWords.size() == 5) {
                         if (!copiedList.isEmpty()) {
-                            System.out.println("You have learned everything, Thank you");
+                            System.out.println("You have learned everything..");
                             doExcercise(copiedList);
                         }
                     }

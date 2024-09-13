@@ -14,7 +14,7 @@ public class functionality {
     public functionality() {
         this.list = new ArrayList<>();
     }
-
+//reading the file "GermanWords.txt", adding words to an array and returning them
     public ArrayList<GermanLanguage> readFile() {
         ArrayList<GermanLanguage> words = new ArrayList<>();
         try ( Scanner scanner = new Scanner(Paths.get("GermanWords.txt"))) {
@@ -36,6 +36,7 @@ public class functionality {
         this.list = this.readFile();
     }
 
+    //returning random words from a list
     public ArrayList<GermanLanguage> subListFromList(int input, File file) {
         try ( Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
