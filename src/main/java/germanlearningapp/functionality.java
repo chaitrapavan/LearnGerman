@@ -1,11 +1,8 @@
 package germanlearningapp;
 
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
-import java.io.File;
+import java.sql.*;
 
 public class functionality {
 
@@ -17,14 +14,28 @@ public class functionality {
 //reading the file "GermanWords.txt", adding words to an array and returning them
     public ArrayList<GermanLanguage> readFile() {
         ArrayList<GermanLanguage> words = new ArrayList<>();
-        try ( Scanner scanner = new Scanner(Paths.get("GermanWords.txt"))) {
-            while (scanner.hasNextLine()) {
-                String germanWord = scanner.nextLine();
-                String englishWord = scanner.nextLine();
-                String example = scanner.nextLine();
-                String answer = scanner.nextLine();
-                words.add(new GermanLanguage(germanWord, englishWord, example, answer));
-            }
+        try {
+          Connection myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/learnGerman", "root", "root");
+
+          Statement myStmt = myConn.createStatement();
+
+          ResultSet myRs = myStmt.executeQuery("select * from germanWords");
+
+          while (myRs.next()){
+              GermanLanguage glan = new GermanLanguage();
+              String germanWord = myRs.getString("germanWord");
+              String englishTranslation = myRs.getString("englishTranslation");
+              String example = myRs.getString("example");
+              String answer = myRs.getString("answer");
+
+              glan.setGermanWord(germanWord);
+              glan.setEnglishTranslation(englishTranslation);
+              glan.setExample(example);
+              glan.setAnswer(answer);
+
+              words.add(glan);
+          }
+          myRs.close();
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -37,10 +48,16 @@ public class functionality {
     }
 
     //returning random words from a list
-    public ArrayList<GermanLanguage> subListFromList(int input, File file) {
-        try ( Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                String word = scanner.nextLine();
+    public ArrayList<GermanLanguage> subListFromList(int input, String tablename) {
+        ArrayList<String> words = new ArrayList<>();
+        try {
+            Connection myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/learnGerman", "root", "root");
+
+            Statement myStmt = myConn.createStatement();
+
+            ResultSet myRs = myStmt.executeQuery("select * from " + tablename);
+            while (myRs.next()) {
+               String word = (myRs.getString(1));
                 for (int i = 0; i < this.list.size(); i++) {
                     if (this.list.get(i).getGermanWord().equals(word)) {
                         this.list.remove(i);
@@ -64,7 +81,7 @@ public class functionality {
         return subList;
     }
 
-    public ArrayList<GermanLanguage> wholeList(int input, File file) {
+    public ArrayList<GermanLanguage> wholeList(int input) {
         ArrayList<GermanLanguage> copyList = new ArrayList<>();
         if (input > this.list.size()) {
             copyList = this.list;
