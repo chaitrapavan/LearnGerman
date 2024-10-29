@@ -17,17 +17,12 @@ public class GermanLanguage {
         this.answer = answer;
     }
 
-    public GermanLanguage(String GermanWord){
-        this.germanWord = germanWord;
-    }
     public String getGermanWord() {
         return this.germanWord;
     }
-
     public String getEnglishTranslation() {
         return this.englishTranslation;
     }
-
     public String getExample() {
         return this.example;
     }

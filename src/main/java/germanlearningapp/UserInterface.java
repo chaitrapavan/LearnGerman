@@ -2,14 +2,7 @@ package germanlearningapp;
 
 import java.sql.*;
 import java.util.Scanner;
-import java.io.File;
 import java.util.ArrayList;
-//import java.io.FileWriter;
-//import java.io.IOException;
-//import java.io.BufferedWriter;
-//import java.nio.file.Paths;
-//import java.util.HashMap;
-//import java.util.Map;
 
 public class UserInterface {
 
@@ -22,13 +15,12 @@ public class UserInterface {
         this.functionality = func;
         this.scanner = scanner;
         this.learnedWords = new ArrayList<>();
-//        this.users = new HashMap<>();
         this.flag = false;
     }
 
     public void authentication() {
         while (true) {
-            if (flag == false) {
+            if (!flag) {
                 System.out.println("Please choose an action");
                 System.out.println("1 - Register");
                 System.out.println("2 - Login");
@@ -83,40 +75,40 @@ public class UserInterface {
                 System.out.println("Registration successful");
             }
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("Error:" + e.getMessage());
         }
         finally {
             if(resultSet != null){
                 try{
                     resultSet.close();
                 }catch(SQLException e){
-                    e.printStackTrace();
+                    System.out.println("Error:" + e.getMessage());
                 }
             }
             if(psInsert != null){
                 try{
                     psInsert.close();
                 }catch(SQLException e){
-                    e.printStackTrace();
+                    System.out.println("Error:" + e.getMessage());
                 }
             }
             if(psCheckUserExists != null){
                 try{
                     psCheckUserExists.close();
                 }catch(SQLException e){
-                    e.printStackTrace();
+                    System.out.println("Error:" + e.getMessage());
                 }
             }
             if(conn != null){
                 try{
                     conn.close();
                 }catch (SQLException e){
-                    e.printStackTrace();
+                    System.out.println("Error:" + e.getMessage());
                 }
             }
         }
     }
-
+//user login
     public void loginUser(String username, String password){
         Connection conn = null;
         PreparedStatement preparedStatement = null;
@@ -147,7 +139,7 @@ public class UserInterface {
                                 Statement statement = conn.createStatement();
                                 statement.executeUpdate(sql.toString());
                             }catch (SQLException e){
-                                e.printStackTrace();
+                                System.out.println("Error:" + e.getMessage());
                             }
                         }
                         start(username, tableName);
@@ -165,7 +157,7 @@ public class UserInterface {
     //a method to give excercise to user
     public void doExcercise(ArrayList<GermanLanguage> Alist) {
         System.out.println("Now its Excercise time!");
-        System.out.println("");
+        System.out.println("/n");
         System.out.println("Enter the blank word for the given sentence");
         for (int j = 0; j < Alist.size(); j++) {
             System.out.println(Alist.get(j).getGermanWord());
@@ -180,7 +172,7 @@ public class UserInterface {
             } else {
                 System.out.println("Your answer is wrong");
                 System.out.println("The correct answer is: " + Alist.get(j).getAnswer());
-                System.out.println("");
+                System.out.println("/n");
             }
         }
     }
@@ -214,7 +206,7 @@ public class UserInterface {
         System.out.println("Welcome " + username);
         int number = 0;
         while (true) {
-            if (flag == false) {
+            if (!flag) {
                 System.out.println("How many words do you want to learn? Please enter end if you want to end");
                 String str = scanner.nextLine();
                 if (str.isEmpty()) {
@@ -261,7 +253,7 @@ public class UserInterface {
                             System.out.println("word inserted correctly");
 
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            System.out.println("Error:" + e.getMessage());
                         }
 
                         System.out.println("Example sentence: " + newList.get(i).getExample());
@@ -272,8 +264,8 @@ public class UserInterface {
                             break;
                         }
                     }
-                    System.out.println("");
-                    if (flag == false) {
+                    System.out.println("/n");
+                    if (!flag) {
                         doExcercise(newList);
                     }
                 } else if (number > newList.size()) {
@@ -296,7 +288,7 @@ public class UserInterface {
                             preparedStatement.setString(1, copiedList.get(i).getGermanWord());
                             preparedStatement.executeUpdate();
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            System.out.println("Error:" + e.getMessage());
                         }
                         System.out.println("Example sentence: " + copiedList.get(i).getExample());
                         String enter6 = scanner.nextLine();
